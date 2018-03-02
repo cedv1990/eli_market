@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-COMPATIBLE', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    meta(http-equiv='Pragma', content='no-cache')
+    meta(http-equiv='expires', content='0')
+    link(rel='shortcut icon', href='/images/favicon.ico')
+    link(rel='apple-touch-icon', href='/images/logo_16x16.png')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    block styles
+    script(type='text/javascript', src='/javascripts/s5-js/s5.js')
+    script(type='text/javascript', src='/javascripts/s5-js/s5.icons.js')
+    script(type='text/javascript', src='/javascripts/s5-js/s5.autocomplete.js')
+    script(type='text/javascript', src='/javascripts/s5-js/s5.notifications.js')
+    script(type='text/javascript', src='/javascripts/s5-js/s5.switch.js')
+  body
+    block content
+    block scripts

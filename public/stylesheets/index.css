@@ -1,0 +1,62 @@
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.authentication-container {
+  flex: 1;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+  .authentication-container > button {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.5em;
+    padding: 15px;
+    width: 300px;
+  }
+
+    .authentication-container > button > svg {
+      -webkit-transition: .2s ease-out;
+      transition: .2s ease-out;
+      position: absolute;
+      left: 30px;
+    }
+
+      .authentication-container > button:hover > svg {
+        left: 35px;
+      }
+
+  .authentication-container .login {
+    background-color: #26a69a;
+  }
+
+    .authentication-container .login > svg {
+      transform: rotate(90deg);
+    }
+
+    .authentication-container .login:hover {
+      background-color: #4db6ac !important;
+    }
+
+  .authentication-container .signin {
+    background-color: #f4511e;
+  }
+
+    .authentication-container .signin:hover {
+      background-color: #ff7043 !important;
+    }
