@@ -6,8 +6,8 @@ body {
   flex-direction: column;
 }
 
-.authentication-container {
-  flex: 1;
+.container {
+  position: absolute;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -15,9 +15,33 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  left: 0;
+  right: 0;
+  -webkit-transition: .3s ease-out;
+  transition: .3s ease-out;
+  height: 100%;
+  opacity: 1;
 }
 
-  .authentication-container > button {
+  .container.hide {
+    height: 0%;
+    opacity: 0;
+  }
+
+  .authentication-container {
+    top: 0;
+  }
+
+.login-container,
+.signin-container {
+  bottom: 0;
+}
+
+.authentication-container {
+  top: 0;
+}
+
+  .authentication-container button {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
@@ -41,22 +65,115 @@ body {
         left: 35px;
       }
 
-  .authentication-container .login {
+  .authentication-container #login {
     background-color: #26a69a;
   }
 
-    .authentication-container .login > svg {
+    .authentication-container #login > svg {
       transform: rotate(90deg);
     }
 
-    .authentication-container .login:hover {
+    .authentication-container #login:hover {
       background-color: #4db6ac !important;
     }
 
-  .authentication-container .signin {
+  .authentication-container #signin {
     background-color: #f4511e;
   }
 
-    .authentication-container .signin:hover {
+    .authentication-container #signin:hover {
       background-color: #ff7043 !important;
+    }
+
+  .container .form-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-flow: column nowrap;
+    -webkit-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    background-color: white;
+    position: relative;
+    padding: 50px;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    border-radius: 4px !important;
+    width: 35%;
+  }
+
+    .container .form-container > div,
+    .container .form-container > form {
+      width: 100%;
+      position: relative;
+    }
+
+      .container .form-container > div input,
+      .container .form-container > form input {
+        width: calc(100% - 32px);
+      }
+
+    .container .form-container .buttons-container {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+      .container .form-container .buttons-container button {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        color: #FFFFFF;
+        font-size: .7em;
+        padding: 10px;
+      }
+
+.back {
+  background-color: #26a69a;
+  padding-left: 30px !important;
+}
+
+  .back:hover {
+    background-color: #4db6ac;
+  }
+
+  .back svg {
+    transform: rotate(270deg);
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+    position: absolute;
+    left: 10px;
+  }
+
+    .back:hover svg {
+      left: 8px;
+    }
+
+.in {
+  background-color: #43a047;
+  padding-right: 30px !important;
+}
+
+  .in:hover {
+    background-color: #4caf50;
+  }
+
+  .in svg {
+    transform: rotate(90deg);
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+    position: absolute;
+    right: 10px;
+  }
+
+    .in:hover svg {
+      right: 8px;
     }
