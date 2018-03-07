@@ -96,3 +96,8 @@ h1 {
   font-size: 1.2em;
   flex: 1;
 }
+
+.msj {
+  font-size: 0.8em;
+  color: #f44336;
+}

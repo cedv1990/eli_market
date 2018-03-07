@@ -5,6 +5,7 @@ block styles
 
 block scripts
   script(src='/javascripts/index.js')
+  script(src='/javascripts/s5-js/aes.js')
 
 block content
   section.authentication-container.container
@@ -13,9 +14,10 @@ block content
   section.login-container.container.hide
     div.form-container
       h1 Ingreso al super
-      div
-        input#usuario(type='text', placeholder='Usuario')
-        input#pass(type='password', placeholder='Contraseña')
+      form
+        input#usuario(type='text', placeholder='Usuario / email', required='required')
+        input#pass(type='password', placeholder='Contraseña', required='required')
+        aside.msj
       div.buttons-container
         button.back Regresar
         button.in Ingresar
@@ -23,10 +25,11 @@ block content
     div.form-container
       h1 Registrarme
       form
-        input#new-email(type='email', placeholder='Correo', pattern="/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/")
-        input#new-usuario(type='text', placeholder='Usuario')
-        input#new-pass(type='password', placeholder='Contraseña')
-        input#new-pass-confirm(type='password', placeholder='Confirme contraseña')
+        input#new-email(type='email', placeholder='Correo', required='required', pattern="/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/")
+        input#new-usuario(type='text', placeholder='Usuario', required='required')
+        input#new-pass(type='password', placeholder='Contraseña', required='required')
+        input#new-pass-confirm(type='password', placeholder='Confirme contraseña', required='required')
+        aside.msj
       div.buttons-container
         button.back Regresar
         button.in Continuar

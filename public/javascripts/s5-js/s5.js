@@ -891,7 +891,7 @@
 
         http.setRequestHeader('Content-type', types.hasOwnProperty(contentType.toUpperCase()) ? types[contentType.toUpperCase()] : contentType);
 
-        const header = Request.headersConfig.find((header) => url.toLowerCase().startsWith(header.url.toLowerCase()));
+        const header = _Request.headersConfig.find((header) => url.toLowerCase().startsWith(header.url.toLowerCase()));
 
         if (header != undefined) {
             http.setRequestHeader(header.type, header.value);

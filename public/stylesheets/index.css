@@ -59,6 +59,8 @@ body {
       transition: .2s ease-out;
       position: absolute;
       left: 30px;
+      /* top: 0; */
+      /* bottom: 0; */
     }
 
       .authentication-container > button:hover > svg {
