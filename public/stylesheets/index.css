@@ -177,3 +177,9 @@ body {
     .in:hover svg {
       right: 8px;
     }
+
+@media (max-width: 800px){
+  .container .form-container {
+      width: 70%;
+  }
+}
