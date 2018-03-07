@@ -122,6 +122,9 @@ body {
       justify-content: space-between;
       margin-top: 10px;
       width: 100%;
+      min-height: 50px;
+      -ms-flex-align: start;
+      align-items: flex-start;
     }
 
       .container .form-container .buttons-container button {
@@ -178,8 +181,20 @@ body {
       right: 8px;
     }
 
-@media (max-width: 800px){
+@media (max-width: 820px){
   .container .form-container {
-      width: 70%;
+    width: auto;
+    max-width: 70%;
+  }
+}
+
+@media (max-height: 728px) {
+  .container .form-container {
+    max-height: 70%;
+  }
+
+  .container .form-container form {
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
