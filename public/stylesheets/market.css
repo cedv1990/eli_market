@@ -63,7 +63,7 @@ body {
     align-items: center;
     padding: 5px 20px;
     padding-right: 5px;
-    z-index: 2;
+    z-index: 3;
 }
 
     .session-bar .name-app {
@@ -118,15 +118,15 @@ body {
         -webkit-transition: .3s ease-out;
         transition: .3s ease-out;
         z-index: 2;
-        top: 55px;
-        right: -330px;
+        top: -200px;
+        right: 5px;
         -webkit-box-shadow: 2px 2px 2px 0 rgba(50, 50, 50, 0.5);
         box-shadow: 2px 2px 2px 0 rgba(50, 50, 50, 0.5);
         visibility: hidden;
     }
 
         .user-menu.visible {
-            right: 5px;
+            top: 55px;
             visibility: visible;
         }
 
