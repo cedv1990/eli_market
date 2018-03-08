@@ -18,7 +18,14 @@ market.define('index/login', [], () => {
         else{
             s5.Request('POST', market['services-url'] + '/user', {
                 Ok: (d) => {
-                    window.location.href = 'init?user=' + JSON.stringify(d.data);
+                    s5.Request('POST', '/init', {
+                        Ok: () => {
+                            window.location.href = window.location.href;
+                        }
+                    },
+                    {
+                        'user': d.data
+                    });
                 },
                 Unauthorized: (data) => {
                     msj.innerHTML = 'Usuario o contraseña incorrectos.';

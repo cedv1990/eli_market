@@ -26,7 +26,10 @@ market.require([], () => {
     fileInput.addEvent('change', () => {
         if (fileInput.files.length > 0){
             s5.fileToBase64(fileInput.files[0], (f) => {
-                const data = 'data:image/{0};base64,{1}'.format(f.name.split('.').pop().toLowerCase(), f.src);
+                let formato = f.name.split('.').pop().toLowerCase();
+                if (formato == 'jpg') formato = 'jpeg';
+
+                const data = 'data:image/{0};base64,{1}'.format(formato, f.src);
                 s5.Request('PATCH', market['services-url'] + '/user', {
                     Ok: (d) => {
                         debugger;

@@ -12,9 +12,15 @@ block content
     span.name-app El mercado de mamita
     div.user-button
       span Hola, #{usuario.name}
-      div.user-photo
+      if usuario.photo != null
+        div.user-photo(style='background-image: url("#{usuario.photo}")')
+      else
+        div.user-photo(style='background-image: url("sin-foto.jpg")')
   nav.user-menu
-    div.photo
+    if usuario.photo != null
+      div.photo(style='background-image: url("#{usuario.photo}")')
+    else
+      div.photo(style='background-image: url("sin-foto.jpg")')
     div.info
       h1 #{usuario.name}
       h2 #{usuario.last_name}
