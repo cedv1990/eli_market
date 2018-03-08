@@ -183,6 +183,11 @@ body {
     display: none;
 }
 
+.photo,
+.user-photo {
+    background-size: contain;
+}
+
 @media (max-width: 590px){
     .session-bar .user-button > span {
         display: none;

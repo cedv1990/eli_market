@@ -18,10 +18,10 @@ router.get('/', function(req, res, next) {
   }
 });
 
-router.get('/init', function(req, res, next) {
+router.post('/init', function(req, res, next) {
   sess = req.session;
 
-  var usuario = JSON.parse( req.query.user );
+  var usuario = req.body.user;
   sess.usuario = usuario;
   res.redirect('/');
 });
