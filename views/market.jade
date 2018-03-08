@@ -1,0 +1,24 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/stylesheets/market.css')
+
+block scripts
+  script(src='/javascripts/market.js')
+
+block content
+  aside.session-bar
+    span.name-app El mercado de mamita
+    div.user-button
+      span Hola, #{usuario.name}
+      div.user-photo
+  nav.user-menu
+    div.photo
+    div.info
+      h1 #{usuario.name}
+      h2 #{usuario.last_name}
+      h3 #{usuario.email}
+      button.exit Salir
+  section.supermarket-container.container
+    div
+      span #{usuario.name} #{usuario.last_name}
