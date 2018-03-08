@@ -122,10 +122,12 @@ body {
         right: -330px;
         -webkit-box-shadow: 2px 2px 2px 0 rgba(50, 50, 50, 0.5);
         box-shadow: 2px 2px 2px 0 rgba(50, 50, 50, 0.5);
+        visibility: hidden;
     }
 
         .user-menu.visible {
             right: 5px;
+            visibility: visible;
         }
 
         .user-menu .photo {
@@ -180,5 +182,9 @@ body {
 @media (max-width: 590px){
     .session-bar .user-button > span {
         display: none;
+    }
+
+    .session-bar .name-app {
+        font-size: 1.5em;
     }
 }
