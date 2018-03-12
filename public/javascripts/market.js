@@ -80,7 +80,7 @@ market.require([], () => {
             superMarkets.forEach((s) => {
                 s.distance = s.gps ? distance(
                     { x: s.gps.longitude, y: s.gps.latitude },
-                    { x: locationGps.longitude, y: s.gps.latitude }
+                    { x: locationGps.longitude, y: locationGps.gps.latitude }
                 ) : 1;
             });
             superMarkets = superMarkets.sort((a, b) => a.distance - b.distance);
