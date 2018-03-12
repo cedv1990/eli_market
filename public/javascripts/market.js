@@ -59,13 +59,13 @@ market.require([], () => {
             //const text = '{0} ({1})'.format(s.name, s.direction);
             const text = 'Nombre: {0}, Gps: {1}, Distance: {2}'.format(s.name, JSON.stringify( s.gps ), s.distance);
 
-            const supermarket = s5.createElem('div', { 'class': 'super-item' }).insert(document.createTextNode(text));
+            const supermarket = s5.createElem('div', { 'class': 'super-item', 'style': 'font-size: .5em;' }).insert(document.createTextNode(text));
 
             supermarketContainer.insert(supermarket);
 
         });
 
-        supermarketContainer.insert(s5.createElem('div', { 'class': 'super-item' }).insert(document.createTextNode('Loc: ' + JSON.stringify(locationGps))));
+        supermarketContainer.insert(s5.createElem('div', { 'class': 'super-item', 'style': 'font-size: .5em;' }).insert(document.createTextNode('Loc: ' + JSON.stringify(locationGps))));
     }
 
     const distance = (a, b) => {
