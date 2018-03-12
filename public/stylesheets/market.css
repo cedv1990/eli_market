@@ -19,10 +19,10 @@ body {
     right: 0;
     -webkit-transition: .3s ease-out;
     transition: .3s ease-out;
-    height: 100%;
+    bottom: 0;
     opacity: 1;
     z-index: 1;
-    margin-top: 55px;
+    top: 55px;
 }
 
     .container.hide {
@@ -190,6 +190,47 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.supermarket-container.container > div {
+    max-height: 60%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+}
+
+    .supermarket-container.container > div > div.super-item,
+    .supermarket-container.container > div > h2 {
+        width: calc(100% - 30px);
+        padding: 15px;
+        margin: 0;
+        text-align: center;
+    }
+
+    .supermarket-container.container > div > h2 {
+        background-color: #42a5f5;
+        color: #FFFFFF;
+        font-size: 1.3em;
+    }
+    
+    .supermarket-container.container > div > div.super-item {
+        cursor: pointer;
+    }
+
+    .supermarket-container.container > div > div.super-item:nth-child(odd) {
+        background-color: #f0faff;
+    }
+
+        .supermarket-container.container > div > div.super-item:nth-child(odd):hover {
+            background-color: #e0f2fb;
+        }
+
+    .supermarket-container.container > div > div.super-item:nth-child(even) {
+        background-color: #fff0f0;
+    }
+
+        .supermarket-container.container > div > div.super-item:nth-child(even):hover {
+            background-color: #ffe4e4;
+        }
 
 @media (max-width: 590px){
     .session-bar .user-button > span {

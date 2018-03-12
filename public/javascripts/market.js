@@ -6,6 +6,7 @@ const market = s5.initialize();
 market['services-url'] = 'https://eli-market-s.herokuapp.com';
 
 market.require([], () => {
+    const supermarketContainer = s5.get('.supermarket-container.container > div').shift();
     const btnUser = s5.get('.user-button').shift();
     const menuUser = s5.get('.user-menu').shift();
     const logout = s5.get('.exit').shift().insert(s5.iconos.Power(12, '#FFFFFF'), 0);
@@ -48,17 +49,55 @@ market.require([], () => {
         }
     });
 
+    const showSuperList = () => {
+        let elim = s5.get('.super-item');
+        while(elim.length > 0)
+            elim.shift().delete();
+
+        superMarkets.forEach((s) => {
+
+            const supermarket = s5.createElem('div', { 'class': 'super-item' }).insert(document.createTextNode('{0} ({1})'.format(s.name, s.direction)));
+
+            supermarketContainer.insert(supermarket);
+
+        });
+    }
+
+    const distance = (a, b) => {
+        return Math.sqrt( Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2) );
+    };
+
+    let watcher,
+        locationGps;
+
+    const loadSuperNear = () => {
+        if (locationGps && superMarkets.length > 0) {
+            superMarkets.forEach((s) => {
+                s.distance = s.gps ? distance(
+                    { x: s.gps.longitude, y: s.gps.latitude },
+                    { x: locationGps.longitude, y: s.gps.latitude }
+                ) : 1;
+            });
+            superMarkets = superMarkets.sort((a, b) => a.distance - b.distance);
+            showSuperList();
+        }
+    }
+
     const geoLocation = (position) => {
-        const loc = {
+        locationGps = {
             accuracy: position.coords.accuracy,
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
         }
-        s5.get('prb').innerHTML += '<hr />Accuracy: {0}<br />Latitude: {1}<br />Longitude: {2}<br />'.format(loc.accuracy, loc.latitude, loc.longitude);
+        s5.get('prb').innerHTML += '<hr />Accuracy: {0}<br />Latitude: {1}<br />Longitude: {2}<br />'.format(locationGps.accuracy, locationGps.latitude, locationGps.longitude);
+        loadSuperNear();
+        if (locationGps.accuracy <= 1000) {
+            navigator.geolocation.clearWatch(watcher);
+        }
     };
 
     if ('geolocation' in navigator) {
-        navigator.geolocation.watchPosition(geoLocation, () => {}, {
+        watcher = navigator.geolocation.watchPosition(geoLocation, () => {}, {
             enableHighAccuracy: true,
             desiredAccuracy   : 0,
             maximumAge        : 0,
@@ -67,16 +106,18 @@ market.require([], () => {
         });
     } 
     else {
-        /* la geolocalización NO está disponible */
+        showSuperList();
     }
 
     s5.Request('GET', market['services-url'] + '/super', {
         Ok: (d) => {
             superMarkets = d.data;
             localStorage.setItem('superMarkets', JSON.stringify( d.data ));
+            loadSuperNear();
         },
         InternalServerError: () => {
             superMarkets = JSON.parse( localStorage.getItem('superMarkets') );
+            showSuperList();
         }
     });
 });
