@@ -54,7 +54,7 @@ market.require([], () => {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
         }
-        s5.get('prb').innerHTML += '<br />' + JSON.stringify(loc);
+        s5.get('prb').innerHTML += '<hr />Accuracy: {0}<br />Latitude: {1}<br />Longitude: {2}<br />'.format(loc.accuracy, loc.latitude, loc.longitude);
     };
 
     if ('geolocation' in navigator) {
