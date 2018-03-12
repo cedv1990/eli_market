@@ -54,6 +54,7 @@
                     overflow: hidden; \
                     display: flex; \
                     flex-flow: column nowrap; \
+                    z-index: 16777271; \
                 } \
                 \
                     .s5-notification-container.top-right { \

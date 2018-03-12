@@ -186,6 +186,8 @@ body {
 .photo,
 .user-photo {
     background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 @media (max-width: 590px){

@@ -6,7 +6,7 @@ block styles
 block scripts
   script(src='/javascripts/market.js')
 
-block content
+block headerContent
   input#photo-uploader(type='file', accept='image/*', data-cod='#{usuario.cod}')
   aside.session-bar
     span.name-app El mercado de mamita
@@ -26,6 +26,9 @@ block content
       h2 #{usuario.last_name}
       h3 #{usuario.email}
       button.exit Salir
+
+block content
   section.supermarket-container.container
     div
       span #{usuario.name} #{usuario.last_name}
+    label#prb

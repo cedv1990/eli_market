@@ -10,7 +10,9 @@ market.require([], () => {
     const menuUser = s5.get('.user-menu').shift();
     const logout = s5.get('.exit').shift().insert(s5.iconos.Power(12, '#FFFFFF'), 0);
     const photo = s5.get('.photo').shift();
+    const photoUser = s5.get('.user-photo').shift();
     const fileInput = s5.get('photo-uploader');
+    let superMarkets = [];
 
     btnUser.addEvent('click', () => {
         btnUser.classList.toggle('selected');
@@ -32,7 +34,8 @@ market.require([], () => {
                 const data = 'data:image/{0};base64,{1}'.format(formato, f.src);
                 s5.Request('PATCH', market['services-url'] + '/user', {
                     Ok: (d) => {
-                        debugger;
+                        photo.styles('background-image', 'url("{0}")'.format(data));
+                        photoUser.styles('background-image', 'url("{0}")'.format(data));
                     }
                 },
                 {
@@ -42,6 +45,38 @@ market.require([], () => {
                     }
                 })
             });
+        }
+    });
+
+    const geoLocation = (position) => {
+        const loc = {
+            accuracy: position.coords.accuracy,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+        }
+        s5.get('prb').innerHTML += '<br />' + JSON.stringify(loc);
+    };
+
+    if ('geolocation' in navigator) {
+        navigator.geolocation.watchPosition(geoLocation, () => {}, {
+            enableHighAccuracy: true,
+            desiredAccuracy   : 0,
+            maximumAge        : 0,
+            timeout           : 5000,
+            frequency         : 1
+        });
+    } 
+    else {
+        /* la geolocalización NO está disponible */
+    }
+
+    s5.Request('GET', market['services-url'] + '/super', {
+        Ok: (d) => {
+            superMarkets = d.data;
+            localStorage.setItem('superMarkets', JSON.stringify( d.data ));
+        },
+        InternalServerError: () => {
+            superMarkets = JSON.parse( localStorage.getItem('superMarkets') );
         }
     });
 });
