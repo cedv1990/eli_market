@@ -64,6 +64,8 @@ market.require([], () => {
             supermarketContainer.insert(supermarket);
 
         });
+
+        supermarketContainer.insert(s5.createElem('div', { 'class': 'super-item' }).insert(document.createTextNode('Loc: ' + JSON.stringify(locationGps))));
     }
 
     const distance = (a, b) => {
