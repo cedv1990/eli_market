@@ -192,6 +192,7 @@ body {
 }
 
 .supermarket-container.container > div {
+    max-width: 90%;
     max-height: 90%;
     overflow-x: hidden;
     overflow-y: auto;
