@@ -13,7 +13,6 @@ market.require([], () => {
     const photo = s5.get('.photo').shift();
     const photoUser = s5.get('.user-photo').shift();
     const fileInput = s5.get('photo-uploader');
-    const addSuperBtn = s5.get('add-super').insert(s5.iconos.Plus(15, '#FFFFFF'), 0);
 
     let superMarkets = [];
 
@@ -63,6 +62,20 @@ market.require([], () => {
 
             const supermarket = s5.createElem('div', { 'class': 'super-item' }).insert(document.createTextNode(text));
 
+            supermarket.addEvent('click', () => {
+                s5.Request('POST', '/super', {
+                    Ok: () => {
+                        window.location.href = window.location.href;
+                    },
+                    InternalServerError: () => {
+                        s5.utilities.notify({ message: 'Ocurrió un error al seleccionar el supermercado.', title: 'Error', type: 'error', position: 'bottom-right', timeOut: 5000 });
+                    }
+                },
+                {
+                    'super': s
+                });
+            });
+
             supermarketContainer.insert(supermarket, i + 1);
 
         });
@@ -101,28 +114,46 @@ market.require([], () => {
         }
     };
 
-    if ('geolocation' in navigator) {
-        watcher = navigator.geolocation.watchPosition(geoLocation, () => {}, {
-            enableHighAccuracy: true,
-            desiredAccuracy   : 0,
-            maximumAge        : 0,
-            timeout           : 5000,
-            frequency         : 1
-        });
-    } 
-    else {
-        showSuperList();
-    }
+    if (!window['NOCARGAR']) {
+        const addSuperBtn = s5.get('add-super').insert(s5.iconos.Plus(15, '#FFFFFF'), 0);
 
-    s5.Request('GET', market['services-url'] + '/super', {
-        Ok: (d) => {
-            superMarkets = d.data;
-            localStorage.setItem('superMarkets', JSON.stringify( d.data ));
-            loadSuperNear();
-        },
-        InternalServerError: () => {
-            superMarkets = JSON.parse( localStorage.getItem('superMarkets') );
+        if ('geolocation' in navigator) {
+            watcher = navigator.geolocation.watchPosition(geoLocation, () => {}, {
+                enableHighAccuracy: true,
+                desiredAccuracy   : 0,
+                maximumAge        : 0,
+                timeout           : 5000,
+                frequency         : 1
+            });
+        } 
+        else {
             showSuperList();
         }
-    });
+
+        s5.Request('GET', market['services-url'] + '/super', {
+            Ok: (d) => {
+                superMarkets = d.data;
+                localStorage.setItem('superMarkets', JSON.stringify( d.data ));
+                loadSuperNear();
+            },
+            InternalServerError: () => {
+                superMarkets = JSON.parse( localStorage.getItem('superMarkets') );
+                showSuperList();
+            }
+        });
+
+    }
+    else{
+        s5.get('.super-market').shift().addEvent('click', () => {
+            if (confirm('Este no es el supermercado, ¿ir a otro?'))
+                s5.Request('DELETE', '/super', {
+                    Ok: () => {
+                        window.location.href = window.location.href;
+                    },
+                    InternalServerError: () => {
+                        s5.utilities.notify({ message: 'Ocurrió un error al quitar el supermercado.', title: 'Error', type: 'error', position: 'bottom-right', timeOut: 5000 });
+                    }
+                });
+        });
+    }
 });

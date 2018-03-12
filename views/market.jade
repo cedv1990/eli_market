@@ -10,6 +10,9 @@ block headerContent
   input#photo-uploader(type='file', accept='image/*', data-cod='#{usuario.cod}')
   aside.session-bar
     span.name-app El mercado de mamita
+    if superMark != null
+      div.super-market #{superMark.name}
+      script(type='text/javascript') window['NOCARGAR'] = true;
     div.user-button
       span Hola, #{usuario.name}
       if usuario.photo != null
@@ -28,8 +31,13 @@ block headerContent
       button.exit Salir
 
 block content
-  section.supermarket-container.container
-    div
-      h2 Selecciona el supermercado
-      div.super-item Consultando supermercados...
-      button#add-super(type='button') Agregar
+  if superMark == null
+    section.supermarket-container.container
+      div
+        h2 Selecciona el supermercado
+        div.super-item Consultando supermercados...
+        button#add-super(type='button') Agregar
+  else
+    section.products-container.container
+      div
+        span contenido
