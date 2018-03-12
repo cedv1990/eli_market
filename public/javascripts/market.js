@@ -89,7 +89,7 @@ market.require([], () => {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
         }
-        s5.get('prb').innerHTML += '<hr />Accuracy: {0}<br />Latitude: {1}<br />Longitude: {2}<br />'.format(locationGps.accuracy, locationGps.latitude, locationGps.longitude);
+        //s5.get('prb').innerHTML += '<hr />Accuracy: {0}<br />Latitude: {1}<br />Longitude: {2}<br />'.format(locationGps.accuracy, locationGps.latitude, locationGps.longitude);
         loadSuperNear();
         if (locationGps.accuracy <= 1000) {
             navigator.geolocation.clearWatch(watcher);
