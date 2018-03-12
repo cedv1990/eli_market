@@ -13,6 +13,8 @@ market.require([], () => {
     const photo = s5.get('.photo').shift();
     const photoUser = s5.get('.user-photo').shift();
     const fileInput = s5.get('photo-uploader');
+    const addSuperBtn = s5.get('add-super').insert(s5.iconos.Plus(15, '#FFFFFF'), 0);
+
     let superMarkets = [];
 
     btnUser.addEvent('click', () => {
@@ -54,14 +56,14 @@ market.require([], () => {
         while(elim.length > 0)
             elim.shift().delete();
 
-        superMarkets.forEach((s) => {
+        superMarkets.forEach((s, i) => {
 
             const text = '{0} ({1})'.format(s.name, s.direction);
             //const text = 'Nombre: {0}, Gps: {1}, Distance: {2}'.format(s.name, JSON.stringify( s.gps ), s.distance);
 
             const supermarket = s5.createElem('div', { 'class': 'super-item' }).insert(document.createTextNode(text));
 
-            supermarketContainer.insert(supermarket);
+            supermarketContainer.insert(supermarket, i + 1);
 
         });
     }

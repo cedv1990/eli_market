@@ -200,12 +200,36 @@ body {
 }
 
     .supermarket-container.container > div > div.super-item,
-    .supermarket-container.container > div > h2 {
+    .supermarket-container.container > div > h2,
+    .supermarket-container.container > div > button {
         width: calc(100% - 30px);
         padding: 15px;
         margin: 0;
         text-align: center;
     }
+
+    .supermarket-container.container > div > button {
+        width: 100%;
+        background-color: #66bb6a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        color: #ffffff;
+        padding: 5px 15px;
+    }
+
+        .supermarket-container.container > div > button > svg {
+            margin-right: 10px;
+        }
+
+        .supermarket-container.container > div > button:hover {
+            background-color: #4caf50;
+        }
+
+        .supermarket-container.container > div > button:hover > svg {
+            margin-right: 15px;
+        }
 
     .supermarket-container.container > div > h2 {
         background-color: #42a5f5;
