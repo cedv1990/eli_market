@@ -56,7 +56,10 @@ market.require([], () => {
 
         superMarkets.forEach((s) => {
 
-            const supermarket = s5.createElem('div', { 'class': 'super-item' }).insert(document.createTextNode('{0} ({1})'.format(s.name, s.direction)));
+            //const text = '{0} ({1})'.format(s.name, s.direction);
+            const text = 'Nombre: {0}, Gps: {1}, Distance: {2}'.format(s.name, JSON.stringify( s.gps ), s.distance);
+
+            const supermarket = s5.createElem('div', { 'class': 'super-item' }).insert(document.createTextNode(text));
 
             supermarketContainer.insert(supermarket);
 
