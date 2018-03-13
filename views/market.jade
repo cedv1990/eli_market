@@ -18,12 +18,12 @@ block headerContent
       if usuario.photo != null
         div.user-photo(style='background-image: url("#{usuario.photo}")')
       else
-        div.user-photo(style='background-image: url("sin-foto.jpg")')
+        div.user-photo(style='background-image: url("images/car.svg"); border: solid 0.5px #fd9d9d;')
   nav.user-menu
     if usuario.photo != null
       div.photo(style='background-image: url("#{usuario.photo}")')
     else
-      div.photo(style='background-image: url("sin-foto.jpg")')
+      div.photo(style='background-image: url("images/car.svg"); border: solid 0.5px #fd9d9d;')
     div.info
       h1 #{usuario.name}
       h2 #{usuario.last_name}
