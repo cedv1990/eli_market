@@ -141,12 +141,17 @@ body {
         padding: 10px;
       }
 
-.back {
+.back:not(:disabled) {
   background-color: #26a69a;
   padding-left: 30px !important;
 }
 
-  .back:hover {
+.back:disabled {
+  background-color: #64ada6;
+  padding-left: 30px !important;
+}
+
+  .back:not(:disabled):hover {
     background-color: #4db6ac;
   }
 
@@ -158,16 +163,21 @@ body {
     left: 10px;
   }
 
-    .back:hover svg {
+    .back:not(:disabled):hover svg {
       left: 8px;
     }
 
-.in {
+.in:not(:disabled) {
   background-color: #43a047;
   padding-right: 30px !important;
 }
 
-  .in:hover {
+.in:disabled {
+  background-color: #60a563;
+  padding-right: 30px !important;
+}
+
+  .in:not(:disabled):hover {
     background-color: #4caf50;
   }
 
@@ -179,7 +189,7 @@ body {
     right: 10px;
   }
 
-    .in:hover svg {
+    .in:not(:disabled):hover svg {
       right: 8px;
     }
 

@@ -10,12 +10,23 @@ market.define('index/login', [], () => {
     const form = s5.extend(pass.parentNode);
     const msj = form.get('.msj').shift();
 
-    btn.addEvent('click', () => {
+    const __elements = s5.get('.login-container.container .buttons-container button');
+    __elements.push(usuario);
+    __elements.push(pass);
+
+    const _disable = (dis) => {
+        window['disabled'] = dis;
+        __elements.forEach((el) => dis ? el.attribute('disabled', 'disabled') : el.removeAttribute('disabled'));
+    };
+
+    const ingreso = () => {
         msj.innerHTML = '';
         if (!form.checkValidity()){
             msj.innerHTML = 'Falta completar campo(s) requerido(s).';
         }
         else{
+            _disable(true);
+            msj.innerHTML = 'Ingresando...';
             s5.Request('POST', market['services-url'] + '/user', {
                 Ok: (d) => {
                     s5.Request('POST', '/init', {
@@ -29,10 +40,12 @@ market.define('index/login', [], () => {
                 },
                 Unauthorized: (data) => {
                     msj.innerHTML = 'Usuario o contraseña incorrectos.';
+                    _disable(false);
                 },
                 InternalServerError: (data) => {
                     msj.innerHTML = 'Ocurrió un error.';
                     console.log(data);
+                    _disable(false);
                 }
             },
             {
@@ -41,6 +54,14 @@ market.define('index/login', [], () => {
                     'pass': pass.value.toAESEncrypt()
                 }
             })
+        }
+    };
+
+    btn.addEvent('click', ingreso);
+
+    btn.addEvent.call(window, 'keyup', (e) => {
+        if (e.keyCode == 13 && !window['disabled']) {
+            ingreso();
         }
     });
 
